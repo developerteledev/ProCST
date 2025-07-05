@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Signals & Trends</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.5);
+    }
+    .navbar, .footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+    .navbar {
+      top: 0;
+    }
+    .footer {
+      bottom: 0;
+    }
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .modal-content {
+      background-color: #1a202c;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+    }
+    .modal-header, .modal-footer {
+      border-color: #2d3748;
+    }
+    .btn-primary {
+      background-color: #f7a600;
+      border-color: #f7a600;
+    }
+    .btn-primary:hover {
+      background-color: #d18a00;
+      border-color: #d18a00;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Video -->
+  <video autoplay muted loop class="video-bg">
+    <source src="https://static.tradingview.com/static/bundles/watchlist-symbols.avc1.4885d5e5c629f9dcc5d2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="bybitLogo1.png" alt="Crypto Signals Logo" width="87" height="34">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#faqModal">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#pricingModal">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#freeAccessModal">Free Access</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Crypto Signals & Trends</h1>
+      <p class="text-lg md:text-xl mb-6">Stay ahead with real-time crypto signals and market trends.</p>
+      <a href="https://partner.bybit.com/b/CSTAPPTELEGR"><button class="btn btn-primary w-100" onclick="Telegram.WebApp.sendData('User viewed pricing')">Get Started</button></a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer py-3">
+    <div class="container-fluid text-center">
+      <img src="bybitLogo1.png" alt="Crypto Signals Logo" width="87" height="34">
+      <ul class="nav justify-content-center mt-2">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#faqModal">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#pricingModal">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#freeAccessModal">Free Access</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Welcome Modal (Appears by Default) -->
+  <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="welcomeModalLabel">Welcome to Crypto Signals & Trends</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Welcome Modal Body Update -->
+<div class="modal-body">
+  <img src="ledgerbybit.png" alt="Ledger Bybit Offer" class="img-fluid mb-3" style="max-width: 100%;">
+
+  <p>This offer is only for new ByBit customers.</p>
+  <br>
+  <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#howItWorksModal">
+  💡 How It Works
+</button>
+
+  <a href="https://partner.bybit.com/b/CSTAPPTELEGR">
+  <button class="btn btn-primary w-100" onclick="Telegram.WebApp.sendData('User viewed welcome offer')">
+    🎁 Claim Your Free Ledger
+  </button>
+</a>
+
+</div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Sign in to access real-time crypto signals and trends.</p>
+          <div class="mb-3">
+            <label for="loginEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="loginEmail" placeholder="Enter email">
+          </div>
+          <div class="mb-3">
+            <label for="loginPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="loginPassword" placeholder="Enter password">
+          </div>
+          <a href="https://partner.bybit.com/b/CSTAPPTELEGR"><button class="btn btn-primary w-100" onclick="Telegram.WebApp.sendData('User viewed pricing')">Login</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Register</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Create an account to join the Crypto Signals community.</p>
+          <div class="mb-3">
+            <label for="registerUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="registerUsername" placeholder="Enter username">
+          </div>
+          <div class="mb-3">
+            <label for="registerEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="registerEmail" placeholder="Enter email">
+          </div>
+          <div class="mb-3">
+            <label for="registerPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="registerPassword" placeholder="Enter password">
+          </div>
+          <a href="https://partner.bybit.com/b/CSTAPPTELEGR"><button class="btn btn-primary w-100" onclick="Telegram.WebApp.sendData('User viewed pricing')">Register</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Modal -->
+  <div class="modal fade" id="faqModal" tabindex="-1" aria-labelledby="faqModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="faqModalLabel">FAQ</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h6>What are Crypto Signals?</h6>
+          <p>Crypto signals are trading recommendations based on market analysis.</p>
+          <h6>How do I use this app?</h6>
+          <p>Register or log in to access real-time signals and trends within Telegram.</p>
+          <h6>Is there a free plan?</h6>
+          <p>Yes, we offer free access with limited features. Check the Free Access section for details.</p>
+          <a href="https://partner.bybit.com/b/CSTAPPTELEGR"><button class="btn btn-primary w-100" onclick="Telegram.WebApp.sendData('User viewed pricing')">Get Started</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing Modal -->
+  <div class="modal fade" id="pricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pricingModalLabel">Pricing</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Choose a plan that suits your trading needs:</p>
+          <ul>
+            <li><strong>Free Plan</strong>: Basic signals, limited access.</li>
+            <li><strong>Pro Plan</strong>: Full signals, real-time trends, priority support.</li>
+            <li><strong>Enterprise Plan</strong>: Custom signals, API access, dedicated account manager.</li>
+          </ul>
+          <a href="https://partner.bybit.com/b/CSTAPPTELEGR"><button class="btn btn-primary w-100" onclick="Telegram.WebApp.sendData('User viewed pricing')">Select Plan</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Free Access Modal -->
+  <div class="modal fade" id="freeAccessModal" tabindex="-1" aria-labelledby="freeAccessModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="freeAccessModalLabel">Free Access</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Get started with our free plan, which includes:</p>
+          <ul>
+            <li>Access to basic crypto signals.</li>
+            <li>Daily market trend updates.</li>
+            <li>Community support via Telegram.</li>
+          </ul>
+          <a href="https://partner.bybit.com/b/CSTAPPTELEGR"><button class="btn btn-primary w-100" onclick="Telegram.WebApp.sendData('User viewed pricing')">Select Plan</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- How It Works Modal -->
+<div class="modal fade" id="howItWorksModal" tabindex="-1" aria-labelledby="howItWorksModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="howItWorksModalLabel">How It Works</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          This offer is only for <strong>new ByBit customers</strong>. Signing up with the leading crypto exchange is <strong>100% FREE</strong>.
+        </p>
+        <br>
+        <p>
+          🎁 When you join, you can claim:
+          <ul class="list-disc pl-5">
+            <li>Up to <strong>$30,000 in trading rewards</strong></li>
+            <li>A <strong>free Ledger hardware wallet</strong> to secure your assets</li>
+          </ul>
+        </p>
+        <br>
+        <p>
+          🚀 Signing up gives you full access to:
+          <ul class="list-disc pl-5">
+            <li>Real-time <strong>AI-generated crypto signals and trend alerts</strong></li>
+            <li>Daily market insights</li>
+            <li>Exclusive weekly newsletter packed with updates and strategies</li>
+          </ul>
+        </p>
+        <br>
+        <p>Join now and supercharge your trading with advanced tools and rewards.</p>
+        <a href="https://partner.bybit.com/b/CSTAPPTELEGR">
+          <button class="btn btn-primary w-100 mt-3" onclick="Telegram.WebApp.sendData('User viewed welcome offer details')">
+            Claim Your Free Ledger
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Bootstrap JS and Telegram WebApp Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+    // Initialize Telegram WebApp
+    const WebApp = window.Telegram.WebApp;
+    WebApp.ready();
+    WebApp.MainButton.setText('GET STARTED');
+    WebApp.MainButton.show();
+    WebApp.MainButton.onClick(() => {
+      WebApp.sendData('User clicked Get Started');
+    });
+
+    // Personalize modals with user data
+    const user = WebApp.initDataUnsafe.user;
+    if (user) {
+      document.querySelectorAll('.modal-body').forEach(modal => {
+        const p = modal.querySelector('p');
+        if (p) p.innerText = `Hello, ${user.first_name}! ${p.innerText}`;
+      });
+    }
+
+    // Show welcome modal on page load
+    window.addEventListener('load', () => {
+      const welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'), {
+        backdrop: 'static',
+        keyboard: false
+      });
+      welcomeModal.show();
+    });
+  </script>
+</body>
+</html>
